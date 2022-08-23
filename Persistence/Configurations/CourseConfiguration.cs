@@ -25,7 +25,6 @@ namespace Persistence.Configurations
             .HasConstraintName("FK_Course_Department");
 
             builder.HasIndex(c => c.Code).IsUnique();
-
         }
     }
 }

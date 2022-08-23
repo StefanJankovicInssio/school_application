@@ -19,10 +19,14 @@ namespace Persistence.Configurations
 
             builder.Property(e => e.FirstName).IsRequired().HasMaxLength(64);
             builder.Property(e => e.LastName).IsRequired().HasMaxLength(64);
-            builder.Property(e => e.Country).IsRequired().HasMaxLength(64);
-            builder.Property(e => e.City).IsRequired().HasMaxLength(64);
-            builder.Property(e => e.ZipCode).IsRequired().HasMaxLength(64);
-            builder.Property(e => e.Street).IsRequired().HasMaxLength(128);
+
+            builder.OwnsOne(e => e.Address, sb =>
+            {
+                sb.Property(e => e.Country).IsRequired().HasMaxLength(64);
+                sb.Property(e => e.City).IsRequired().HasMaxLength(64);
+                sb.Property(e => e.ZipCode).IsRequired().HasMaxLength(64);
+                sb.Property(e => e.Street).IsRequired().HasMaxLength(128);
+            });
         }
     }
 }
