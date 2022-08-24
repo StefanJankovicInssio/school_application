@@ -12,4 +12,5 @@ namespace Domen.Models.Base
         public DateTime Created { get; set; } = DateTime.Now;
 
     }
+
 }
