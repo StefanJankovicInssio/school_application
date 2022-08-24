@@ -14,7 +14,7 @@ namespace Persistence.Configurations
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
-            builder.Property(e => e.Id).ValueGeneratedOnAdd();
+            builder.HasKey(e => e.Id);
             builder.Property(e => e.Created).IsRequired();
         }
     }

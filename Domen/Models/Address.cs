@@ -9,17 +9,15 @@ namespace Domen.Models
 {
     public class Address : ValueObject
     {
-        internal Address(string country, string city, string zipcode, string street)
+        protected Address()
         {
 
+        }
+        internal Address(string country, string city, string street, string zipcode)
+        {
             if (string.IsNullOrWhiteSpace(country))
             {
                 throw new ArgumentNullException("Country must be required");
-            }
-
-            if (string.IsNullOrWhiteSpace(zipcode))
-            {
-                throw new ArgumentNullException("Zipcode must be required");
             }
 
             if (string.IsNullOrWhiteSpace(city))
@@ -33,20 +31,20 @@ namespace Domen.Models
             }
 
             this.Country = country;
-            this.ZipCode = zipcode;
             this.City = city;
             this.Street = street;
+            this.ZipCode = zipcode;
         }
+
+        public string Country { get; }
+        public string City { get; }
+        public string Street { get; }
+        public string ZipCode { get; }
 
         public static Address CreateInstance(string country, string city, string zipcode, string street)
         {
-            return new Address(country, city, zipcode, street);
+            return new Address(country, city, street, zipcode);
         }
-
-        public string Country { get; private set; } = String.Empty;
-        public string City { get; private set; } = String.Empty;
-        public string ZipCode { get; private set; } = String.Empty;
-        public string Street { get; private set; } = String.Empty;
 
         protected override IEnumerable<object> GetEqualityComponents()
         {

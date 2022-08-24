@@ -10,7 +10,6 @@ namespace Application.Models
 {
     public class Student : Person
     {
-        public Address Address { get; set; }
-        public virtual List<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
+        public virtual ICollection<StudentCourse> StudentCourses { get; set; } = new HashSet<StudentCourse>();
     }
 }

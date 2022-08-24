@@ -8,7 +8,9 @@ namespace Domen.Models.Base
 {
     public abstract class Person: BaseEntity
     {
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Address Address { get; set; }
+
     }
 }

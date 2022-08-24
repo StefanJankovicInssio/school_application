@@ -8,11 +8,6 @@ C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Presentat
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Presentation.runtimeconfig.json
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Presentation.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Presentation.pdb
-C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.dll
-C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\refint\Presentation.dll
-C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.pdb
-C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.genruntimeconfig.cache
-C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\ref\Presentation.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -58,5 +53,8 @@ C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Persisten
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Persistence.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domen.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.csproj.CopyComplete
-C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Humanizer.dll
-C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.dll
+C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\refint\Presentation.dll
+C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.pdb
+C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.genruntimeconfig.cache
+C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\ref\Presentation.dll

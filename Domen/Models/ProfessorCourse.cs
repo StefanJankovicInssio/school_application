@@ -12,8 +12,7 @@ namespace Domen.Models
     {
         public int ProfessorId { get; set; }
         public int CourseId { get; set; }
-        public int Grade { get; set; }
-        public virtual Professor Professor { get; set; } = null!;
-        public virtual Course Course { get; set; } = null!;
+        public virtual Professor Professor { get; set; }
+        public virtual Course Course { get; set; }
     }
 }
