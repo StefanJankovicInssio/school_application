@@ -8,6 +8,9 @@
     ".NETCoreApp,Version=v6.0": {
       "Presentation/1.0.0": {
         "dependencies": {
+          "Application": "1.0.0",
+          "Domain.Infrastructure": "1.0.0",
+          "Infrastructure": "1.0.0",
           "Persistence": "1.0.0"
         },
         "runtime": {
@@ -456,14 +459,49 @@
           }
         }
       },
-      "Domen/1.0.0": {
+      "Application/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
         "runtime": {
-          "Domen.dll": {}
+          "Application.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "runtime": {
+          "Domain.dll": {}
+        }
+      },
+      "Domain.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Domain.Service": "1.0.0",
+          "Persistence": "1.0.0"
+        },
+        "runtime": {
+          "Domain.Infrastructure.dll": {}
+        }
+      },
+      "Domain.Service/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "runtime": {
+          "Domain.Service.dll": {}
+        }
+      },
+      "Infrastructure/1.0.0": {
+        "dependencies": {
+          "Application": "1.0.0",
+          "Domain.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "Infrastructure.dll": {}
         }
       },
       "Persistence/1.0.0": {
         "dependencies": {
-          "Domen": "1.0.0",
+          "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5"
         },
@@ -759,7 +797,27 @@
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
     },
-    "Domen/1.0.0": {
+    "Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Domain.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Domain.Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

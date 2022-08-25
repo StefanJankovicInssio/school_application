@@ -735,21 +735,76 @@
           }
         }
       },
-      "Domen/1.0.0": {
+      "Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/Domen.dll": {}
+          "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Domen.dll": {}
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Domain.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Domain.Service": "1.0.0",
+          "Persistence": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Domain.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.Infrastructure.dll": {}
+        }
+      },
+      "Domain.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Domain.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.Service.dll": {}
+        }
+      },
+      "Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Application": "1.0.0",
+          "Domain.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.dll": {}
         }
       },
       "Persistence/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Domen": "1.0.0",
+          "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5"
         },
@@ -1924,10 +1979,30 @@
         "version.txt"
       ]
     },
-    "Domen/1.0.0": {
+    "Application/1.0.0": {
       "type": "project",
-      "path": "../Domen/Domen.csproj",
-      "msbuildProject": "../Domen/Domen.csproj"
+      "path": "../Application/Application.csproj",
+      "msbuildProject": "../Application/Application.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domen/Domain.csproj",
+      "msbuildProject": "../Domen/Domain.csproj"
+    },
+    "Domain.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Domain.Service/Domain.Infrastructure.csproj",
+      "msbuildProject": "../Domain.Service/Domain.Infrastructure.csproj"
+    },
+    "Domain.Service/1.0.0": {
+      "type": "project",
+      "path": "../Domain.Service.Abstractions/Domain.Service.csproj",
+      "msbuildProject": "../Domain.Service.Abstractions/Domain.Service.csproj"
+    },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
     },
     "Persistence/1.0.0": {
       "type": "project",
@@ -1937,6 +2012,9 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Application >= 1.0.0",
+      "Domain.Infrastructure >= 1.0.0",
+      "Infrastructure >= 1.0.0",
       "Persistence >= 1.0.0"
     ]
   },
@@ -1967,6 +2045,15 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\STEFAN\\source\\repos\\Application\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Application\\Application.csproj"
+            },
+            "C:\\Users\\STEFAN\\source\\repos\\Application\\Domain.Service\\Domain.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domain.Service\\Domain.Infrastructure.csproj"
+            },
+            "C:\\Users\\STEFAN\\source\\repos\\Application\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Infrastructure\\Infrastructure.csproj"
+            },
             "C:\\Users\\STEFAN\\source\\repos\\Application\\Persistence\\Persistence.csproj": {
               "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Persistence\\Persistence.csproj"
             }

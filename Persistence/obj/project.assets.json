@@ -780,14 +780,14 @@
           }
         }
       },
-      "Domen/1.0.0": {
+      "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/Domen.dll": {}
+          "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Domen.dll": {}
+          "bin/placeholder/Domain.dll": {}
         }
       }
     }
@@ -2009,15 +2009,15 @@
         "version.txt"
       ]
     },
-    "Domen/1.0.0": {
+    "Domain/1.0.0": {
       "type": "project",
-      "path": "../Domen/Domen.csproj",
-      "msbuildProject": "../Domen/Domen.csproj"
+      "path": "../Domen/Domain.csproj",
+      "msbuildProject": "../Domen/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Domen >= 1.0.0",
+      "Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.5",
@@ -2051,8 +2051,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domen.csproj": {
-              "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domen.csproj"
+            "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domain.csproj": {
+              "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domain.csproj"
             }
           }
         }

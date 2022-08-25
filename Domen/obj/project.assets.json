@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domen.csproj",
-      "projectName": "Domen",
-      "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domen.csproj",
+      "projectUniqueName": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domain.csproj",
+      "projectName": "Domain",
+      "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domain.csproj",
       "packagesPath": "C:\\Users\\STEFAN\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\obj\\",
       "projectStyle": "PackageReference",
