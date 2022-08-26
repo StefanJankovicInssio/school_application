@@ -271,6 +271,9 @@
               },
               "C:\\Users\\STEFAN\\source\\repos\\Application\\Domain.Service\\Domain.Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domain.Service\\Domain.Infrastructure.csproj"
+              },
+              "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domain.csproj": {
+                "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domen\\Domain.csproj"
               }
             }
           }
@@ -411,9 +414,6 @@
             "projectReferences": {
               "C:\\Users\\STEFAN\\source\\repos\\Application\\Application\\Application.csproj": {
                 "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Application\\Application.csproj"
-              },
-              "C:\\Users\\STEFAN\\source\\repos\\Application\\Domain.Service\\Domain.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Domain.Service\\Domain.Infrastructure.csproj"
               },
               "C:\\Users\\STEFAN\\source\\repos\\Application\\Infrastructure\\Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Infrastructure\\Infrastructure.csproj"

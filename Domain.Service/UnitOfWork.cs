@@ -1,6 +1,7 @@
 ﻿using Application.Data;
 using Application.Models;
 using Domain.Infrastructure.Repositories;
+using Domain.Service;
 using Domain.Service.Abstractions.Repositories;
 using Domain.Service.Repositories;
 using Domen.Models;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Infrastructure
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
 
         public UnitOfWork(ApplicationDbContext context)
@@ -99,9 +100,9 @@ namespace Domain.Infrastructure
             }
         }
 
-        public void Save()
+        public async Task Save()
         {
-            context.SaveChanges();
+            context.SaveChangesAsync();
         }
     }
 }

@@ -43,13 +43,17 @@ C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\runtimes\
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Application.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domain.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domain.Infrastructure.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domain.Service.dll
+C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Infrastructure.dll
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Persistence.dll
-C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domain.Infrastructure.pdb
+C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Application.pdb
+C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Infrastructure.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Persistence.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domain.pdb
+C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domain.Infrastructure.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Domain.Service.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.csproj.AssemblyReference.cache
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.GeneratedMSBuildEditorConfig.editorconfig
@@ -62,7 +66,3 @@ C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\refint\Pr
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.genruntimeconfig.cache
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\ref\Presentation.dll
-C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Application.dll
-C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Infrastructure.dll
-C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Application.pdb
-C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Infrastructure.pdb

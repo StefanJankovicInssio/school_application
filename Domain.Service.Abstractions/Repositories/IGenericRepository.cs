@@ -9,10 +9,10 @@ namespace Domain.Service.Repositories
 {
     public interface IGenericRepository<TEntity>
     {
-        public void Delete(int id);
-        public IEnumerable<TEntity> Get();
-        public TEntity GetById(int id);
-        public void Insert(TEntity data);
-        public void Update(TEntity data);
+        public Task Delete(int id);
+        public Task<IEnumerable<TEntity>> Get();
+        public Task<TEntity> GetById(int id);
+        public Task Insert(TEntity data);
+        public Task Update(TEntity data);
     }
 }

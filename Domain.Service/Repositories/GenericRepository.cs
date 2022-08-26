@@ -21,28 +21,28 @@ namespace Domain.Infrastructure.Repositories
             this.dbSet = context.Set<TEntity>();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var data = dbSet.Find(id);
+            var data = await dbSet.FindAsync(id);
             dbSet.Remove(data);
         }
 
-        public IEnumerable<TEntity> Get()
+        public async Task<IEnumerable<TEntity>> Get()
         {
-            return dbSet.ToList();
+            return await dbSet.ToListAsync();
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public void Insert(TEntity data)
+        public async Task Insert(TEntity data)
         {
-            dbSet.Add(data);
+            await dbSet.AddAsync(data);
         }
 
-        public void Update(TEntity data)
+        public async Task Update(TEntity data)
         {
             context.Entry(data).State = EntityState.Modified;
         }

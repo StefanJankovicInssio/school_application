@@ -11,7 +11,7 @@ namespace Domain.Service.Abstractions.Repositories
     public interface ICourseRepository : IGenericRepository<Course>
     {
 
-        public void AddStudentToCourse(int studentId, int courseId);
-        public void AddProfessorToCourse(int professorId, int courseId);
+        public Task AddStudentToCourse(int studentId, int courseId);
+        public Task AddProfessorToCourse(int professorId, int courseId);
     }
 }

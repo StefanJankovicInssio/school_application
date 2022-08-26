@@ -12,7 +12,7 @@ namespace Application.Models
     {
         public string Name { get; set; } = string.Empty;
         public string Code { get; set; } = string.Empty;
-        public int DepartmentId { get; set; }
+        public int? DepartmentId { get; set; }
         public virtual Department Department { get; set; } = null!;
         public virtual ICollection<StudentCourse> StudentCourses { get; set; } = new HashSet<StudentCourse>();
         public virtual ICollection<ProfessorCourse> ProfessorCourses { get; set; } = new HashSet<ProfessorCourse>();

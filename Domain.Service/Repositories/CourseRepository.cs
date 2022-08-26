@@ -19,15 +19,14 @@ namespace Domain.Service.Repositories
 
         }
 
-        public void AddStudentToCourse(int studentId, int courseId)
+        public async Task AddProfessorToCourse(int professorId, int courseId)
         {
-            context.StudentCourses.Add(new StudentCourse { StudentId = studentId, CourseId = courseId });
+            await context.ProfessorCourses.AddAsync(new ProfessorCourse { ProfessorId = professorId, CourseId = courseId });
         }
 
-        public void AddProfessorToCourse(int professorId, int courseId)
+        public async Task AddStudentToCourse(int studentId, int courseId)
         {
-            context.ProfessorCourses.Add(new ProfessorCourse { ProfessorId = professorId, CourseId = courseId });
+            await context.StudentCourses.AddAsync(new StudentCourse { StudentId = studentId, CourseId = courseId });
         }
-
     }
 }
