@@ -11,8 +11,9 @@ namespace Application.Services
 {
     public interface IDepertmentService
     {
-        public Task<ServiceResponse<IEnumerable<GetDepartmentDto>>> GetDepartments();
-        public Task<ServiceResponse<GetDepartmentDto>> GetDepartment(int departmentId);
+        public Task<IEnumerable<GetDepartmentDto>> GetDepartments();
+        public Task<GetDepartmentDto> GetDepartmentById(int departmentId);
+        public Task<GetDepartmentDto> GetDepartmentByName(string departmentName);
         public Task AddDepartment (AddDepartmentDto department);
         public Task EditDepartment(int departmentId, EditDepartmentDto department);
         public Task DeleteDepartment(int departmentId);

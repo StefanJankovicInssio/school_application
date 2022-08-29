@@ -102,7 +102,7 @@ namespace Domain.Infrastructure
 
         public async Task Save()
         {
-            context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
     }
 }

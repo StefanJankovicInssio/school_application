@@ -3,6 +3,8 @@ using Application.Data;
 using Application.Dtos.Department;
 using Application.Models;
 using Application.Services;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain.Infrastructure;
 using Domain.Service;
 using Infrastructure.Dtos.Department;
@@ -19,16 +21,19 @@ namespace Infrastructure.Services
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IUnitOfWork unitOfWork;
-        public DepartmentService()
+        private readonly IMapper mapper;
+
+        public DepartmentService(IMapper mapper)
         {
             dbContext = new ApplicationDbContext();
             unitOfWork = new UnitOfWork(dbContext);
+            this.mapper = mapper;
         }
 
         public async Task AddDepartment(AddDepartmentDto department)
         {
             Department newDepartment = new Department();
-            newDepartment.Name = department.Name;
+            newDepartment = mapper.Map<Department>(department);
 
             await unitOfWork.DepartmentRepository.Insert(newDepartment);
             await unitOfWork.Save();
@@ -36,52 +41,44 @@ namespace Infrastructure.Services
 
         public async Task DeleteDepartment(int departmentId)
         {
-            var department = await dbContext.Departments.FindAsync(departmentId);
+            var department = await unitOfWork.DepartmentRepository.GetById(departmentId);
 
             await unitOfWork.DepartmentRepository.Delete(department.Id);
+            await unitOfWork.Save();
         }
 
         public async Task EditDepartment(int departmentId, EditDepartmentDto department)
         {
-            var currentDepartment = await dbContext.Departments.FindAsync(departmentId);
-
-            currentDepartment.Name = department.Name;
+            Department currentDepartment = await unitOfWork.DepartmentRepository.GetById(departmentId);
+            mapper.Map<EditDepartmentDto, Department>(department, currentDepartment);
 
             await unitOfWork.DepartmentRepository.Update(currentDepartment);
-            unitOfWork.Save();
+            await unitOfWork.Save();
         }
 
-        public async Task<ServiceResponse<GetDepartmentDto>> GetDepartment(int departmentId)
+        public async Task<GetDepartmentDto> GetDepartmentById(int departmentId)
         {
             var department = await dbContext.Departments
                 .Where(x => x.Id == departmentId)
-                .Select(x => new GetDepartmentDto
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                })
-                .FirstOrDefaultAsync();
+                .ProjectTo<GetDepartmentDto>(mapper.ConfigurationProvider).FirstOrDefaultAsync();
 
-            if (department == null)
-            {
-                return new ServiceResponse<GetDepartmentDto> { Success = false, ErrorMessage = "There is no department for this id" };
-            }
-
-            return new ServiceResponse<GetDepartmentDto>
-            {
-                Data = department
-            };
+            return department;
         }
 
-        public async Task<ServiceResponse<IEnumerable<GetDepartmentDto>>> GetDepartments()
+        public async Task<GetDepartmentDto> GetDepartmentByName(string departmentName) 
         {
-            IEnumerable<GetDepartmentDto> departments = await dbContext.Departments.Select(x => new GetDepartmentDto
-            {
-                Id = x.Id,
-                Name = x.Name,
-            }).AsNoTracking().ToListAsync();
+            var department = await dbContext.Departments
+               .Where(x => x.Name == departmentName)
+               .ProjectTo<GetDepartmentDto>(mapper.ConfigurationProvider).FirstOrDefaultAsync();
 
-            return new ServiceResponse<IEnumerable<GetDepartmentDto>> { Data = departments };
+            return department;
         }
+
+        public async Task<IEnumerable<GetDepartmentDto>> GetDepartments()
+        {
+            return await dbContext.Departments.ProjectTo<GetDepartmentDto>(mapper.ConfigurationProvider).ToListAsync();
+        }
+
+
     }
 }

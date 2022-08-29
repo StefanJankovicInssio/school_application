@@ -11,87 +11,84 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Application.Services;
+using Application.Dtos.Student;
+using Application.Dtos;
+using Address = Domen.Models.Address;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace Infrastructure.Services
 {
-    public class ProfessorService
+    public class ProfessorService : IProfessorService
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IUnitOfWork unitOfWork;
-        public ProfessorService()
+        private readonly IMapper mapper;
+
+        public ProfessorService(IMapper mapper)
         {
             dbContext = new ApplicationDbContext();
             unitOfWork = new UnitOfWork(dbContext);
+            this.mapper = mapper;
         }
 
 
         public async Task AddProfessor(AddProfessorDto professor)
         {
             Professor newProfessor = new Professor();
-            newProfessor.FirstName = professor.FirstName;
-            newProfessor.LastName = professor.LastName;
-            newProfessor.Address = Address.CreateInstance(
-                professor.Address.Country, professor.Address.City, professor.Address.ZipCode, professor.Address.Street
-                );
+            newProfessor = mapper.Map<Professor>(professor);
 
             await unitOfWork.ProfessorRepository.Insert(newProfessor);
-            unitOfWork.Save();
+            await unitOfWork.Save();
         }
 
         public async Task DeleteProfessor(int professorId)
         {
-            var professor = await dbContext.Professors.FindAsync(professorId);
+            var professor = await unitOfWork.ProfessorRepository.GetById(professorId);
 
             await unitOfWork.ProfessorRepository.Delete(professor.Id);
+            await unitOfWork.Save();
         }
 
         public async Task EditProfessor(int professorId, EditProfessorDto professor)
         {
-            var currentProfessor = await dbContext.Professors.FindAsync(professorId);
+            var currentProfessor = await unitOfWork.ProfessorRepository.GetById(professorId);
 
-            currentProfessor.FirstName = professor.FirstName;
-            currentProfessor.LastName = professor.LastName;
-            currentProfessor.Address = Address.CreateInstance(
-                professor.Address.Country, professor.Address.City, professor.Address.ZipCode, professor.Address.Street
-                );
+            currentProfessor = mapper.Map<Professor>(professor);
 
             await unitOfWork.ProfessorRepository.Update(currentProfessor);
-            unitOfWork.Save();
+            await unitOfWork.Save();
         }
 
-        public async Task<ServiceResponse<GetProfessorDto>> GetProfessor(int professorId)
+        public async Task<GetProfessorDto> GetProfessor(int professorId)
         {
             var professor = await dbContext.Professors
                 .Where(x => x.Id == professorId)
-                .Select(x => new GetProfessorDto
-                {
-                    Id = x.Id,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
-                })
+                .ProjectTo<GetProfessorDto>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
-            if (professor == null)
-            {
-                return new ServiceResponse<GetProfessorDto> { Success = false, ErrorMessage = "There is no professor for this id" };
-            }
-
-            return new ServiceResponse<GetProfessorDto>
-            {
-                Data = professor
-            };
+            return professor;
         }
 
-        public async Task<ServiceResponse<IEnumerable<GetProfessorDto>>> GetProfessors()
+        public async Task<ResponsePage<GetProfessorDto>> GetProfessors(int page, int pageSize = 2, int? courseId = null)
         {
-            IEnumerable<GetProfessorDto> professors = await dbContext.Professors.Select(x => new GetProfessorDto
-            {
-                Id = x.Id,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-            }).AsNoTracking().ToListAsync();
+            var query = dbContext.Professors.AsQueryable();
 
-            return new ServiceResponse<IEnumerable<GetProfessorDto>> { Data = professors };
+            if (courseId != null)
+            {
+                query = query.Where(x => x.ProfessorCourses.Any(y => y.CourseId == courseId));
+            }
+
+            var pageCount = Math.Ceiling((decimal)query.Count() / pageSize);
+
+            IEnumerable<GetProfessorDto> professors = await query.ProjectTo<GetProfessorDto>(mapper.ConfigurationProvider)
+            .Skip((page - 1) * (int)(pageSize))
+            .Take((int)pageSize)
+            .ToListAsync();
+
+            var reponse = new ResponsePage<GetProfessorDto> { Result = professors, CurrentPage = page, Pages = (int)pageCount };
+            return reponse;
         }
 
     }
