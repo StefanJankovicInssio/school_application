@@ -26,52 +26,51 @@ namespace Infrastructure.Services
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public ProfessorService(IMapper mapper)
+        public ProfessorService(ApplicationDbContext dbContext, IUnitOfWork unitOfWork, IMapper mapper)
         {
-            dbContext = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(dbContext);
+            this.dbContext = dbContext;
+            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
-
-        public async Task AddProfessor(AddProfessorDto professor)
+        public async Task Add(AddProfessorDto data)
         {
             Professor newProfessor = new Professor();
-            newProfessor = mapper.Map<Professor>(professor);
+            newProfessor = mapper.Map<Professor>(data);
 
             await unitOfWork.ProfessorRepository.Insert(newProfessor);
             await unitOfWork.Save();
         }
 
-        public async Task DeleteProfessor(int professorId)
+        public async Task DeleteById(int id)
         {
-            var professor = await unitOfWork.ProfessorRepository.GetById(professorId);
+            var professor = await unitOfWork.ProfessorRepository.GetById(id);
 
             await unitOfWork.ProfessorRepository.Delete(professor.Id);
             await unitOfWork.Save();
         }
 
-        public async Task EditProfessor(int professorId, EditProfessorDto professor)
+        public async Task EditById(int id, EditProfessorDto data)
         {
-            var currentProfessor = await unitOfWork.ProfessorRepository.GetById(professorId);
+            var currentProfessor = await unitOfWork.ProfessorRepository.GetById(id);
 
-            currentProfessor = mapper.Map<Professor>(professor);
+            mapper.Map<EditProfessorDto, Professor>(data, currentProfessor);
 
             await unitOfWork.ProfessorRepository.Update(currentProfessor);
             await unitOfWork.Save();
         }
 
-        public async Task<GetProfessorDto> GetProfessor(int professorId)
+        public async Task<GetProfessorDto> GetById(int id)
         {
             var professor = await dbContext.Professors
-                .Where(x => x.Id == professorId)
+                .Where(x => x.Id == id)
                 .ProjectTo<GetProfessorDto>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
             return professor;
         }
 
-        public async Task<ResponsePage<GetProfessorDto>> GetProfessors(int page, int pageSize = 2, int? courseId = null)
+        public async Task<ResponsePage<GetProfessorDto>> Get(int page, int pageSize = 2, int? courseId = null)
         {
             var query = dbContext.Professors.AsQueryable();
 

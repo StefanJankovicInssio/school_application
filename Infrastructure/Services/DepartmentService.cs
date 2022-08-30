@@ -17,64 +17,64 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
-    public class DepartmentService : IDepertmentService
+    public class DepartmentService : IDepartmentService
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public DepartmentService(IMapper mapper)
+        public DepartmentService(ApplicationDbContext dbContext, IUnitOfWork unitOfWork, IMapper mapper)
         {
-            dbContext = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(dbContext);
+            this.dbContext = dbContext;
+            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
-        public async Task AddDepartment(AddDepartmentDto department)
+        public async Task Add(AddDepartmentDto data)
         {
             Department newDepartment = new Department();
-            newDepartment = mapper.Map<Department>(department);
+            newDepartment = mapper.Map<Department>(data);
 
             await unitOfWork.DepartmentRepository.Insert(newDepartment);
             await unitOfWork.Save();
         }
 
-        public async Task DeleteDepartment(int departmentId)
+        public async Task DeleteById(int id)
         {
-            var department = await unitOfWork.DepartmentRepository.GetById(departmentId);
+            var department = await unitOfWork.DepartmentRepository.GetById(id);
 
             await unitOfWork.DepartmentRepository.Delete(department.Id);
             await unitOfWork.Save();
         }
 
-        public async Task EditDepartment(int departmentId, EditDepartmentDto department)
+        public async Task EditById(int id, EditDepartmentDto data)
         {
-            Department currentDepartment = await unitOfWork.DepartmentRepository.GetById(departmentId);
-            mapper.Map<EditDepartmentDto, Department>(department, currentDepartment);
+            Department currentDepartment = await unitOfWork.DepartmentRepository.GetById(id);
+            mapper.Map<EditDepartmentDto, Department>(data, currentDepartment);
 
             await unitOfWork.DepartmentRepository.Update(currentDepartment);
             await unitOfWork.Save();
         }
 
-        public async Task<GetDepartmentDto> GetDepartmentById(int departmentId)
+        public async Task<GetDepartmentDto> GetById(int id)
         {
             var department = await dbContext.Departments
-                .Where(x => x.Id == departmentId)
+                .Where(x => x.Id == id)
                 .ProjectTo<GetDepartmentDto>(mapper.ConfigurationProvider).FirstOrDefaultAsync();
 
             return department;
         }
 
-        public async Task<GetDepartmentDto> GetDepartmentByName(string departmentName) 
+        public async Task<GetDepartmentDto> GetByName(string name) 
         {
             var department = await dbContext.Departments
-               .Where(x => x.Name == departmentName)
+               .Where(x => x.Name == name)
                .ProjectTo<GetDepartmentDto>(mapper.ConfigurationProvider).FirstOrDefaultAsync();
 
             return department;
         }
 
-        public async Task<IEnumerable<GetDepartmentDto>> GetDepartments()
+        public async Task<IEnumerable<GetDepartmentDto>> Get()
         {
             return await dbContext.Departments.ProjectTo<GetDepartmentDto>(mapper.ConfigurationProvider).ToListAsync();
         }

@@ -11,10 +11,10 @@ namespace Application.Services
 {
     public interface IProfessorService
     {
-        public Task<ResponsePage<GetProfessorDto>> GetProfessors(int page, int pageSize = 2, int? courseId = null);
-        public Task<GetProfessorDto> GetProfessor(int professorId);
-        public Task AddProfessor(AddProfessorDto professor);
-        public Task EditProfessor(int professorId, EditProfessorDto professor);
-        public Task DeleteProfessor(int professorId);
+        public Task<ResponsePage<GetProfessorDto>> Get(int page, int pageSize = 2, int? courseId = null);
+        public Task<GetProfessorDto> GetById(int professorId);
+        public Task Add(AddProfessorDto professor);
+        public Task EditById(int professorId, EditProfessorDto professor);
+        public Task DeleteById(int professorId);
     }
 }

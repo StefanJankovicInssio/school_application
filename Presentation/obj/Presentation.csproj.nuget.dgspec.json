@@ -418,14 +418,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\STEFAN\\source\\repos\\Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Application\\Application.csproj"
-              },
               "C:\\Users\\STEFAN\\source\\repos\\Application\\Infrastructure\\Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Infrastructure\\Infrastructure.csproj"
-              },
-              "C:\\Users\\STEFAN\\source\\repos\\Application\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -439,6 +433,16 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -451,6 +455,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

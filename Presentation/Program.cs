@@ -1,39 +1,79 @@
-﻿using Application.Data;
-using Application.Dtos;
-using Application.Dtos.Course;
-using Application.Dtos.Department;
-using Application.Dtos.Student;
+using Application.Data;
 using Application.Models;
 using Application.Services;
 using AutoMapper;
 using Domain.Infrastructure;
 using Domain.Service;
-using Domain.Service.Abstractions.Repositories;
-using Domain.Service.Repositories;
 using Infrastructure;
-using Infrastructure.Dtos.Department;
 using Infrastructure.Services;
+using Microsoft.OpenApi.Models;
+using Serilog;
 
-ApplicationDbContext context = new ApplicationDbContext();
-IUnitOfWork unitOfWork = new UnitOfWork(context);
+var builder = WebApplication.CreateBuilder(args);
 
-var config = new MapperConfiguration(cfg =>
+// Add services to the container.
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog();
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IProfessorService, ProfessorService>();
+
+builder.Services.AddSwaggerGen(c =>
 {
-    cfg.AddProfile(new AutoMapperProfile());
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "My API",
+        Version = "v1"
+    });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please insert JWT with Bearer into field",
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+   {
+     new OpenApiSecurityScheme
+     {
+       Reference = new OpenApiReference
+       {
+         Type = ReferenceType.SecurityScheme,
+         Id = "Bearer"
+       }
+      },
+      new string[] { }
+    }
+  });
 });
 
-IMapper mapper = config.CreateMapper();
+var app = builder.Build();
 
-IStudentService studentService = new StudentService(mapper);
-ICourseService courseService = new CourseService(mapper);
-
-AddStudentDto data = new AddStudentDto()
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    FirstName = "Marko",
-    LastName = "Markovic",
-    Address = new Address { Country = "Srbija", City = "Lazarevac", ZipCode = "11500", Street = "Jaokima Vujic 19A" }
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-};
-await studentService.AddStudent(data);
+app.UseHttpsRedirection();
 
+app.UseAuthorization();
 
+app.MapControllers();
+
+app.Run();

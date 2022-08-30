@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Dtos
 {
-    public class Address
+    public class AddressDto
     {
         public string Country { get; set; }
         public string City { get; set; }

@@ -10,7 +10,8 @@ namespace Application.Dtos.Student
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Address Address { get; set; }
+        public string Index { get; set; }
+        public AddressDto Address { get; set; }
 
     }
 }

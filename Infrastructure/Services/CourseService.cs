@@ -24,48 +24,48 @@ namespace Infrastructure.Services
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public CourseService(IMapper mapper)
+        public CourseService(ApplicationDbContext dbContext, IUnitOfWork unitOfWork, IMapper mapper)
         {
-            dbContext = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(dbContext);
+            this.dbContext = dbContext;
+            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
-        public async Task AddCourse(AddCourseDto course)
+        public async Task Add(AddCourseDto data)
         {
             Course newCourse = new Course();
-            newCourse = mapper.Map<Course>(course);
+            newCourse = mapper.Map<Course>(data);
 
             await unitOfWork.CourseRepository.Insert(newCourse);
             await unitOfWork.Save();
         }
 
-        public async Task DeleteCourse(int courseId)
+        public async Task DeleteById(int id)
         {
-            var course = await unitOfWork.CourseRepository.GetById(courseId);
+            var course = await unitOfWork.CourseRepository.GetById(id);
 
             await unitOfWork.CourseRepository.Delete(course.Id);
         }
 
-        public async Task EditCourse(int courseId, EditCourseDto course)
+        public async Task EditById(int id, EditCourseDto data)
         {
-            var currentCourse = await unitOfWork.CourseRepository.GetById(courseId);
+            var currentCourse = await unitOfWork.CourseRepository.GetById(id);
 
-            mapper.Map<EditCourseDto, Course>(course, currentCourse);
+            mapper.Map<EditCourseDto, Course>(data, currentCourse);
 
             await unitOfWork.CourseRepository.Update(currentCourse);
             await unitOfWork.Save();
         }
 
-        public async Task<GetCourseDto> GetCourse(int courseId)
+        public async Task<GetCourseDto> GetById(int id)
         {
             var course = await dbContext.Courses
-                .Where(x => x.Id == courseId)
+                .Where(x => x.Id == id)
                 .ProjectTo<GetCourseDto>(mapper.ConfigurationProvider).FirstOrDefaultAsync();
 
             return course;
         }
 
-        public async Task<ResponsePage<GetCourseDto>> GetCourses(int page, int pageSize = 2)
+        public async Task<ResponsePage<GetCourseDto>> Get(int page, int pageSize = 2)
         {
             var pageCount = Math.Ceiling((decimal)dbContext.Courses.Count() / pageSize);
 

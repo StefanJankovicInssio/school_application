@@ -11,11 +11,11 @@ namespace Application.Services
 {
     public interface ICourseService
     {
-        public Task<ResponsePage<GetCourseDto>> GetCourses(int page, int pageSize = 2);
-        public Task<GetCourseDto> GetCourse(int courseId);
-        public Task AddCourse(AddCourseDto course);
-        public Task EditCourse(int courseId, EditCourseDto course);
-        public Task DeleteCourse(int courseId);
+        public Task<ResponsePage<GetCourseDto>> Get(int page, int pageSize = 2);
+        public Task<GetCourseDto> GetById(int id);
+        public Task Add(AddCourseDto data);
+        public Task EditById(int id, EditCourseDto data);
+        public Task DeleteById(int id);
         public Task AddStudentToCourse(int studentId, int courseId);
         public Task AddProfessorToCourse(int professorId, int courseId);
     }

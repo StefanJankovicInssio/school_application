@@ -26,53 +26,53 @@ namespace Infrastructure.Services
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public StudentService(IMapper mapper)
+        public StudentService(ApplicationDbContext dbContext, IUnitOfWork unitOfWork, IMapper mapper)
         {
-            dbContext = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(dbContext);
+            this.dbContext = dbContext;
+            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
 
-        public async Task AddStudent(AddStudentDto student)
+        public async Task Add(AddStudentDto data)
         {
             Student newStudent = new Student();
-            newStudent = mapper.Map<Student>(student);
+            newStudent = mapper.Map<Student>(data);
 
             await unitOfWork.StudentRepository.Insert(newStudent);
             await unitOfWork.Save();
         }
 
-        public async Task DeleteStudent(int studentId)
+        public async Task DeleteById(int id)
         {
-            var student = await unitOfWork.StudentRepository.GetById(studentId);
+            var student = await unitOfWork.StudentRepository.GetById(id);
 
             await unitOfWork.StudentRepository.Delete(student.Id);
             await unitOfWork.Save();
 
         }
 
-        public async Task EditStudent(int studentId, EditStudentDto student)
+        public async Task EditById(int id, EditStudentDto data)
         {
-            var currentStudent = await unitOfWork.StudentRepository.GetById(studentId);
+            var currentStudent = await unitOfWork.StudentRepository.GetById(id);
 
-            currentStudent = mapper.Map<Student>(student);
+            mapper.Map<EditStudentDto, Student>(data, currentStudent);
 
             await unitOfWork.StudentRepository.Update(currentStudent);
             await unitOfWork.Save();
         }
 
-        public async Task<GetStudentDto> GetStudent(int studentId)
+        public async Task<GetStudentDto> GetById(int id)
         {
             var student = await dbContext.Students
-                .Where(x => x.Id == studentId)
+                .Where(x => x.Id == id)
                 .ProjectTo<GetStudentDto>(mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
             return student;
         }
 
-        public async Task<ResponsePage<GetStudentDto>> GetStudents(int page, int pageSize = 2, int? courseId = null)
+        public async Task<ResponsePage<GetStudentDto>> Get(int page, int pageSize = 2, int? courseId = null, string? firstName = null, string? lastName = null)
         {
             var query = dbContext.Students.AsQueryable();
 
@@ -80,6 +80,17 @@ namespace Infrastructure.Services
             {
                 query = query.Where(x => x.StudentCourses.Any(y=>y.CourseId == courseId));
             }
+
+            if (String.IsNullOrWhiteSpace(firstName) == false)
+            {
+                query = query.Where(x => x.FirstName == firstName);
+            }
+
+            if (String.IsNullOrWhiteSpace(lastName) == false)
+            {
+                query = query.Where(x => x.LastName == lastName);
+            }
+
 
             var pageCount = Math.Ceiling((decimal)query.Count() / pageSize);
 
