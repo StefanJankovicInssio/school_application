@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IbRTuvebL7XNDRX0OahtiBsLL1uT+etD85XWdpcLZvAedDgCw8cwHGZAwdjXjiTfr5DW/z58EVaQ/husvRqijw==",
+  "dgSpecHash": "DYZ/CkIUMFw9uV3X5Em4AKobKujHivtwUSczGS5wwC7khVYmGYV+K4H9zpF0HsoLWoVTR2wjPhP21Q74cHi08A==",
   "success": true,
   "projectFilePath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,8 @@
     "C:\\Users\\STEFAN\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\STEFAN\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\STEFAN\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\STEFAN\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
+    "C:\\Users\\STEFAN\\.nuget\\packages\\serilog.sinks.console\\4.0.1\\serilog.sinks.console.4.0.1.nupkg.sha512",
     "C:\\Users\\STEFAN\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\STEFAN\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\STEFAN\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

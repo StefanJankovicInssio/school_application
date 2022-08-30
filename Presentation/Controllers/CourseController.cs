@@ -1,4 +1,5 @@
 ﻿using Application.Dtos.Course;
+using Application.Dtos.Professor;
 using Application.Services;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
@@ -36,7 +37,7 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult> Edit(int id, [FromBody] EditCourseDto data)
         {
             await courseService.EditById(id, data);
@@ -49,5 +50,20 @@ namespace Presentation.Controllers
             await courseService.DeleteById(id);
             return Ok();
         }
+
+        [HttpPost("studentToCourse")]
+        public async Task<ActionResult> AddStudent([FromBody] AddStudentToCourseDto data)
+        {
+            await courseService.AddStudentToCourse(data.studentId, data.courseId);
+            return Ok();
+        }
+
+        [HttpPost("professorToCourse")]
+        public async Task<ActionResult> AddProfessor([FromBody] AddProfessorToCourseDto data)
+        {
+            await courseService.AddStudentToCourse(data.professorId, data.courseId);
+            return Ok();
+        }
+
     }
 }

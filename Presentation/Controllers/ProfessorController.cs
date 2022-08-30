@@ -35,7 +35,7 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult> Edit(int id, [FromBody] EditProfessorDto data)
         {
             await studentService.EditById(id, data);

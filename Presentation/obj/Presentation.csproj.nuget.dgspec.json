@@ -372,6 +372,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.5, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.0.1, )"
             }
           },
           "imports": [
@@ -437,6 +441,14 @@
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[6.0.1, )"
+            },
+            "Serilog.Expressions": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
+            "Serilog.Sinks.Seq": {
+              "target": "Package",
+              "version": "[5.1.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
