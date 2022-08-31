@@ -1,8 +1,10 @@
 ﻿using Application.Dtos.Student;
 using Application.Services;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Presentation.Controllers
 {
@@ -18,36 +20,82 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("{page}")]
-        public async Task<ActionResult<IEnumerable<GetStudentDto>>> Get(int page)
+        public async Task<IActionResult> Get(int page)
         {
-            return Ok(await studentService.Get(page));
+            try
+            {
+                Log.Information("Get students per page");
+                return Ok(await studentService.Get(page));
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("Page {@page}", page, ex.Message);
+                throw new Exception("Server Error");
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetStudentDto>> ById(int id)
+        public async Task<IActionResult> ById(int id)
         {
-            return Ok(await studentService.GetById(id));
+            try
+            {
+                Log.Information("Get student by id");
+                return Ok(await studentService.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("Id {@id}", id, ex.Message);
+                throw new Exception("Server Error");
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult> Add([FromBody] AddStudentDto data)
+        public async Task<IActionResult> Add([FromBody] AddStudentDto data)
         {
-            await studentService.Add(data);
-            return Ok();
+            try
+            {
+                Log.Information("Add student");
+                await studentService.Add(data);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("Sent object {@data}", data, ex.Message);
+                throw new Exception("Server Error");
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Edit(int id, [FromBody] EditStudentDto data)
+        public async Task<IActionResult> Edit(int id, [FromBody] EditStudentDto data)
         {
-            await studentService.EditById(id, data);
-            return Ok();
+            try
+            {
+                Log.Information("Edit student");
+                await studentService.EditById(id, data);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("Id {@id} Sent object {@data}", id, data, ex.Message);
+                throw new Exception("Server Error");
+            }
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            await studentService.DeleteById(id);
-            return Ok();
+            try
+            {
+                Log.Information("Delete student");
+                await studentService.DeleteById(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("Id {@id} is not exist", id, ex.Message);
+                throw new Exception("Server Error");
+            }
         }
+
     }
 }

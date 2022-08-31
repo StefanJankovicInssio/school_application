@@ -84,3 +84,4 @@ C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\refint\Pr
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.pdb
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\Presentation.genruntimeconfig.cache
 C:\Users\STEFAN\source\repos\Application\Presentation\obj\Debug\net6.0\ref\Presentation.dll
+C:\Users\STEFAN\source\repos\Application\Presentation\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
