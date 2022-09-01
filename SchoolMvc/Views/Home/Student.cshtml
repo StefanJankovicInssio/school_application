@@ -1,0 +1,21 @@
+﻿@model Application.Dtos.Student.GetStudentDetailsDto
+
+<div class="container">
+    <h4>Student </h4><br />
+
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+        <p><b>@Html.DisplayNameFor(model => model.Id):</b> @Html.DisplayFor(model => model.Id)</p><hr />
+        <p><b>@Html.DisplayNameFor(model => model.FirstName):</b> @Html.DisplayFor(model => model.FirstName)</p><hr />
+        <p><b>@Html.DisplayNameFor(model => model.LastName):</b> @Html.DisplayFor(model => model.LastName)</p><hr />
+        <p><b>@Html.DisplayNameFor(model => model.Index):</b> @Html.DisplayFor(model => model.Index)</p><hr />
+        <p><b>@Html.DisplayNameFor(model => model.Address.Country):</b> @Html.DisplayFor(model => model.Address.Country)</p><hr />
+        <p><b>@Html.DisplayNameFor(model => model.Address.City):</b> @Html.DisplayFor(model => model.Address.City)</p><hr />
+        <p><b>@Html.DisplayNameFor(model => model.Address.Street):</b> @Html.DisplayFor(model => model.Address.Street)</p><hr />
+        <p><b>@Html.DisplayNameFor(model => model.Address.ZipCode):</b> @Html.DisplayFor(model => model.Address.ZipCode)</p><hr />
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>

@@ -72,7 +72,7 @@ namespace Infrastructure.Services
             return student;
         }
 
-        public async Task<ResponsePage<GetStudentDto>> Get(int page, int pageSize = 2, int? courseId = null, string? firstName = null, string? lastName = null)
+        public async Task<ResponsePage<GetStudentDto>> Get(int page, int pageSize = 4, int? courseId = null, string? firstName = null, string? lastName = null)
         {
             var query = dbContext.Students.AsQueryable();
 
@@ -101,6 +101,23 @@ namespace Infrastructure.Services
 
             var reponse = new ResponsePage<GetStudentDto> { Result = students, CurrentPage = page, Pages = (int)pageCount };
             return reponse;
+        }
+
+        public async Task<GetStudentDetailsDto> GetDetailsById(int id)
+        {
+            var student = await dbContext.Students
+             .Where(x => x.Id == id)
+             .FirstOrDefaultAsync();
+
+            GetStudentDetailsDto data = new GetStudentDetailsDto();
+            data.Id = student.Id;
+            data.FirstName = student.FirstName;
+            data.LastName = student.LastName;
+            data.Index = student.Index;
+            data.Address =
+                new AddressDto { Country = student.Address.Country, City = student.Address.City, Street = student.Address.Street, ZipCode = student.Address.ZipCode };
+
+            return data;
         }
     }
 }

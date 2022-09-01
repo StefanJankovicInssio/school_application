@@ -30,6 +30,7 @@ namespace Infrastructure
                 .AfterMap((src, dest) => 
                 { dest.Address = Address.CreateInstance(src.Address.Country, src.Address.City, src.Address.ZipCode, src.Address.Street); });
             CreateMap<Student, GetStudentDto>();
+            CreateMap<Student, GetStudentDetailsDto>();
             CreateMap<AddProfessorDto, Professor>();
             CreateMap<EditProfessorDto, Professor>().AfterMap((src, dest) =>
             { dest.Address = Address.CreateInstance(src.Address.Country, src.Address.City, src.Address.ZipCode, src.Address.Street); });

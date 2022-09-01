@@ -1,0 +1,42 @@
+﻿@model Application.Dtos.Student.EditStudentDto
+<h4>Edit student</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form method="post">
+                <div class="form-group mt-3">
+                    <label for="firstName">First name</label>
+                    @Html.TextBoxFor(x=>x.FirstName)
+                </div>
+                <div class="form-group mt-3">
+                    <label for="lastName">Last name</label>
+                    @Html.TextBoxFor(x=>x.LastName)
+                </div>
+                <div class="form-group mt-3">
+                    <label for="index">Index</label>
+                    @Html.TextBoxFor(x=>x.Index)
+                </div>
+                <div class="form-group mt-3">
+                    <label for="country">Country</label>
+                    @Html.TextBoxFor(x=>x.Address.Country)
+                </div>
+                <div class="form-group mt-3">
+                    <label for="city">City</label>
+                    @Html.TextBoxFor(x=>x.Address.City)
+                </div>
+                <div class="form-group mt-3">
+                    <label for="street">Street</label>
+                    @Html.TextBoxFor(x=>x.Address.Street)
+                </div>
+                <div class="form-group mt-3">
+                    <label for="zipcode">Zipcode</label>
+                    @Html.TextBoxFor(x=>x.Address.ZipCode)
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</div>

@@ -4334,9 +4334,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\STEFAN\\source\\repos\\Application\\Presentation\\Presentation.csproj",
-      "projectName": "Presentation",
-      "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Presentation\\Presentation.csproj",
+      "projectUniqueName": "C:\\Users\\STEFAN\\source\\repos\\Application\\Presentation\\SchoolApi.csproj",
+      "projectName": "SchoolApi",
+      "projectPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Presentation\\SchoolApi.csproj",
       "packagesPath": "C:\\Users\\STEFAN\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Presentation\\obj\\",
       "projectStyle": "PackageReference",

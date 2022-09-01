@@ -35,7 +35,7 @@ namespace Presentation.Controllers
             }
         }
 
-        [HttpGet("{id}"), Authorize(Roles = "user")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> ById(int id)
         {
             try

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sffhhK+bopZOF++3aBpECi2cnz0K2y2iCTxXOjmI78vXMYZdWPeLrWXw9iTiqmX/3elYHv+LuFHxB4d1xMA2Lw==",
+  "dgSpecHash": "ItlGqS6+rCI7/NVR5dvT379DscUzZtBd1zD5lekdbjpNmYRP7iGZ2QVkxPt5bgrXVa5AvFV5FckHBkxN0RGCvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Presentation\\Presentation.csproj",
+  "projectFilePath": "C:\\Users\\STEFAN\\source\\repos\\Application\\Presentation\\SchoolApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\STEFAN\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\STEFAN\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
