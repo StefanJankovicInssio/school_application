@@ -12,9 +12,7 @@ namespace Domain.Service
     {
         ICourseRepository CourseRepository { get; }
         IDepartmentRepository DepartmentRepository { get; }
-        IProfessorCourseRepository ProfessorCourseRepository { get; }
         IProfessorRepository ProfessorRepository { get; }
-        IStudentCourseRepository StudentCourseRepository { get; }
         IStudentRepository StudentRepository { get; }
         Task Save();
     }
