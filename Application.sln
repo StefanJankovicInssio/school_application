@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolApi", "Presentation\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolMvc", "SchoolMvc\SchoolMvc.csproj", "{C0DD9C62-E4E1-4C18-ACE5-BEF4A53E68E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolApiTest", "SchoolApiTest\SchoolApiTest.csproj", "{B6EB9AD3-3957-4FAA-B9AF-B0DB148C8A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolApiTest", "SchoolApiTest\SchoolApiTest.csproj", "{B6EB9AD3-3957-4FAA-B9AF-B0DB148C8A94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

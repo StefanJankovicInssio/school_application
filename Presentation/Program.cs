@@ -4,6 +4,8 @@ using Application.Services;
 using AutoMapper;
 using Domain.Infrastructure;
 using Domain.Service;
+using Domain.Service.Abstractions.Repositories;
+using Domain.Service.Repositories;
 using Infrastructure;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -41,6 +43,11 @@ try
     builder.Services.AddScoped<ICourseService, CourseService>();
     builder.Services.AddScoped<IStudentService, StudentService>();
     builder.Services.AddScoped<IProfessorService, ProfessorService>();
+
+    builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+    builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+    builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+    builder.Services.AddScoped<IProfessorRepository, ProfessorRepository>();
 
     builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
